@@ -1,5 +1,5 @@
 # Data is never committed (slide note: "No sharing of data with peers allowed"; Kaggle competition rules)
-data/
+/data/
 *.zip
 *.crdownload
 
