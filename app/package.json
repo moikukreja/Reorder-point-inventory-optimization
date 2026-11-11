@@ -1,0 +1,60 @@
+{
+  "name": "ai-reorder-point-dashboard",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "AI-enhanced reorder point & inventory dashboard (AI in Operations exercise)",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "predev": "node scripts/copy-wasm.mjs",
+    "prebuild": "node scripts/copy-wasm.mjs",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --port 4173",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.node.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "pretrain": "tsx scripts/pretrain-lstm.ts",
+    "verify:models": "tsx scripts/verify-models.ts",
+    "verify:risk": "tsx scripts/verify-risk.ts",
+    "verify:optim": "tsx scripts/verify-optim.ts",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.1.1",
+    "@fontsource/jetbrains-mono": "^5.1.2",
+    "@react-three/drei": "^9.117.3",
+    "@react-three/fiber": "^8.17.10",
+    "@tensorflow/tfjs": "4.22.0",
+    "@tensorflow/tfjs-backend-wasm": "4.22.0",
+    "comlink": "4.4.2",
+    "echarts": "5.6.0",
+    "echarts-for-react": "3.0.2",
+    "framer-motion": "11.18.2",
+    "idb-keyval": "6.2.1",
+    "lucide-react": "0.468.0",
+    "papaparse": "5.4.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "^0.169.0",
+    "zustand": "4.5.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "20.19.43",
+    "@types/papaparse": "5.3.15",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@types/three": "^0.169.0",
+    "@vitejs/plugin-react": "4.7.0",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.19",
+    "tsx": "4.19.2",
+    "typescript": "5.9.3",
+    "vite": "5.4.21",
+    "vitest": "2.1.9"
+  }
+}

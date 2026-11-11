@@ -1,0 +1,16 @@
+{
+ "version": 1,
+ "key": "3|BEVERAGES",
+ "W": 28,
+ "H": 14,
+ "mu": 8.814595349180896,
+ "sigma": 0.40146137330440523,
+ "correction": 1.005676744741305,
+ "trainStart": 455,
+ "cutoff": 1435,
+ "cutoffDate": "2016-12-06",
+ "trainedAt": "2026-11-11T08:11:24.862Z",
+ "epochs": 20,
+ "valLoss": 0.08339334279298782,
+ "seed": 7
+}

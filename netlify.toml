@@ -1,0 +1,41 @@
+# Netlify (free tier) — static site only: no functions, no environment variables, no data.
+# The dashboard runs every model in the visitor's browser (Web Workers).
+
+[build]
+  base    = "app"
+  command = "npm ci && npm run build"   # prebuild copies the TF.js WebAssembly binaries into public/
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# The app uses hash routing (#/forecast), so no SPA redirect is needed: unknown paths
+# correctly return 404 (this also lets the worker detect a missing LSTM model).
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # 'wasm-unsafe-eval' lets TensorFlow.js compile its WebAssembly backend; nothing else may eval.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+
+# Hashed build assets never change, so cache them for a year
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Model weights and WASM binaries: cache for a day (they change only when re-trained or upgraded)
+[[headers]]
+  for = "/models/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/tfjs-wasm/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/wasm"

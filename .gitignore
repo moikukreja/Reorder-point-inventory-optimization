@@ -1,0 +1,28 @@
+# Data is never committed (slide note: "No sharing of data with peers allowed"; Kaggle competition rules)
+data/
+*.zip
+*.crdownload
+
+# Node / build
+node_modules/
+dist/
+.vite/
+coverage/
+playwright-report/
+test-results/
+
+# Python / notebooks
+__pycache__/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+app/public/tfjs-wasm/
+
+# Course materials and local tooling (not part of the project)
+WhatsApp Image*.jpeg
+Untitled5.ipynb
+.claude/
